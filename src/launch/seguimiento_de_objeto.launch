@@ -1,0 +1,18 @@
+```xml
+```xml
+<?xml version="1.0"?>
+<launch>
+    <node
+        pkg="lab1"
+        exec="detector_de_objeto"
+        name="detector_de_objeto"
+        output="screen"
+    />
+    <node
+        pkg="lab1"
+        exec="seguidor_de_objeto"
+        name="seguidor_de_objeto"
+        output="screen"
+    />
+</launch>
+```
