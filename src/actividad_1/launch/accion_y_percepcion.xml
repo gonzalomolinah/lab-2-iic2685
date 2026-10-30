@@ -1,0 +1,22 @@
+<launch>
+
+    <!-- Simulador -->
+    <include file="$(find-pkg-share lab1)/launch/lab1_simulator.xml"/>
+
+    <!-- Navegación -->
+    <node
+        pkg="lab1"
+        exec="dead_reckoning_nav.py"
+        name="dead_reckoning_nav"
+        output="screen"
+    />
+
+    <!-- Carga de poses -->
+    <node
+        pkg="lab1"
+        exec="pose_loader.py"
+        name="pose_loader"
+        output="screen"
+    />
+
+</launch>

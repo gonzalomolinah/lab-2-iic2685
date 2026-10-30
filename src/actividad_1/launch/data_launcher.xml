@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="lab1" exec="data_logger.py" name="data_logger"/>
+	<node pkg="lab1" exec="pose_loader.py" name="pose_loader"/>
+</launch>

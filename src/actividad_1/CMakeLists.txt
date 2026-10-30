@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(pi_controller)
+project(actividad_1)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -10,6 +10,24 @@ find_package(ament_cmake REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
+
+
+
+install(PROGRAMS
+  nodes/dead_reckoning_nav.py
+  nodes/pose_loader.py
+  nodes/data_logger.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}/
+)
+
+# install(FILES
+#   nodes/poses.txt
+#   DESTINATION lib/${PROJECT_NAME}
+# )
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

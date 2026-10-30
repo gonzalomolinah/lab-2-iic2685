@@ -1,0 +1,4 @@
+<launch>
+  <include file="$(find-pkg-share lab1)/launch/lab1_simulator.xml" />
+  <node pkg="lab1" exec="teleop_keyboard.py" name="teleop_keyboard" output="screen" />
+</launch>

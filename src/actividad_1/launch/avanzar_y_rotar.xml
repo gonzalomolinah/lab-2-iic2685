@@ -1,0 +1,8 @@
+<launch>
+
+    <include file="$(find-pkg-share lab1)/launch/lab1_simulator.xml" />
+    <node pkg="lab1" exec="dead_reckoning_nav.py" name="dead_reckoning_nav"/>
+    <node pkg="lab1" exec="pose_loader.py" name="pose_loader"/>
+    <!-- <node pkg="lab1" exec="data_logger.py" name="data_logger"/> -->
+
+</launch>
