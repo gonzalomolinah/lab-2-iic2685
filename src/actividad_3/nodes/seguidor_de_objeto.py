@@ -7,7 +7,6 @@ from sensor_msgs.msg import Image
 from geometry_msgs.msg import Twist
 from geometry_msgs.msg import PoseArray
 from cv_bridge import CvBridge
-from skimage.measure import block_reduce
 from geometry_msgs.msg import Vector3
 import time
 

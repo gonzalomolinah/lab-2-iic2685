@@ -18,7 +18,7 @@ class detectorDeObjeto(Node): #? ModificaObstacleDetectoObstacleDetectorrr nombr
         pass
     
     def init_communications(self): #? Crear Comunicaciones (Tópicos/Servicios)
-        topic = 'camera/rgb/image_color' #? Subscritor de la cámara
+        topic = 'rgb/image_color' #? Subscritor de la cámara
         self.subscription = self.create_subscription(
             Image, #? Tipo de mensaje
             topic, #? Nombre del tópico
@@ -41,8 +41,8 @@ class detectorDeObjeto(Node): #? ModificaObstacleDetectoObstacleDetectorrr nombr
         np_image = np.array(image)
         hsv_image = cv2.cvtColor(np_image, cv2.COLOR_BGR2HSV)
         # Definimos el azul entre 140 a 240 en el espacio HSV h: 180-300 s: 40-100 v: 50-100 
-        lower_cap_blue_color = np.array([90, 80, 40]) 
-        upper_cap_blue_color = np.array([150, 255, 255])
+        lower_cap_blue_color = np.array([90, 0, 0]) 
+        upper_cap_blue_color = np.array([180, 255, 255])
         # recorremos la matriz de pixeles y vemos si estan en el rango de azul
         blue_pixels = cv2.inRange(hsv_image, lower_cap_blue_color, upper_cap_blue_color)
         # ================= PROBAR ====================== cantidad de pixeles para un cuadrado
@@ -50,8 +50,9 @@ class detectorDeObjeto(Node): #? ModificaObstacleDetectoObstacleDetectorrr nombr
         # pasamos la imagen a una binaria 
         #binary_image = cv2.threshold(blue_pixels, 127, 255, cv2.THRESH_BINARY)[1]
         binary_image = blue_pixels
-        if cv2.countNonZero(binary_image) > 1000:
+        if cv2.countNonZero(binary_image) > 50:
             self.process_blue_square_position(binary_image)
+            self.get_logger().info("Blue square detected!")
 
     # Encontrada la poscion, procesamos la imagen, para eventualmente girar el robot hacia el cuadrado azul
     def process_blue_square_position(self, image):
