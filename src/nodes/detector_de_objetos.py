@@ -48,7 +48,8 @@ class detectorDeObjeto(Node): #? ModificaObstacleDetectoObstacleDetectorrr nombr
         # ================= PROBAR ====================== cantidad de pixeles para un cuadrado
         # si hay mas de 1000 pixeles azules, sospechamos cuadrado azul 
         # pasamos la imagen a una binaria 
-        binary_image = cv2.threshold(blue_pixels, 127, 255, cv2.THRESH_BINARY)[1]
+        #binary_image = cv2.threshold(blue_pixels, 127, 255, cv2.THRESH_BINARY)[1]
+        binary_image = blue_pixels
         if cv2.countNonZero(binary_image) > 1000:
             self.process_blue_square_position(binary_image)
 
@@ -74,7 +75,7 @@ class detectorDeObjeto(Node): #? ModificaObstacleDetectoObstacleDetectorrr nombr
                     vector.y = 0.0
                     vector.z = 0.0
                     self.get_logger().info(f"Blue square at position: ({cX}, {cY})")
-                    ### ===== IMPORTANTE =====
+                    ### ===== IMPORTANTE ====
                     # solo nos importa la coordenada x, hacemos 0 las otras 
                     self.publisher.publish(vector) # despues de toda la matematica publicamos el vector 
         pass  
